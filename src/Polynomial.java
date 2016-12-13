@@ -115,23 +115,16 @@ public class Polynomial {
 
     public Polynomial multiplication(Polynomial p) {
         Polynomial newPoly = new Polynomial();
-        ListIterator<Double> thisCoefIterator = this.getCoeffs().listIterator(),
-                pCoefIterator = p.getCoeffs().listIterator();
-        ArrayList<Double> newCoeffs = new ArrayList<>(this.degree + p.degree + 1);
         newPoly.setDegree(this.degree + p.degree);
         Double buffer;
-        Double[] nC = new Double[this.degree + p.degree + 1];
-//        int i = -1, j = -0;
-//        while (thisCoefIterator.hasNext()) {
-//            i++;
-//            while (pCoefIterator.hasNext()) {
-//                j++;
-//                newCoeffs.add(i + j, thisCoefIterator.next() * pCoefIterator.next());
-//            }
-//        }
+        ArrayList<Double> newCoeffs = new ArrayList<>(this.degree + p.degree);
+        for (int i = this.degree + p.degree; i >= 0; i--) {
+            newCoeffs.add(0.0);
+        }
         for (int i = this.degree; i >= 0; i--) {
             for (int j = p.degree; j >= 0; j--) {
-                nC[i + j] += this.coeffs.get(i) * p.coeffs.get(j);
+                buffer = this.coeffs.get(i) * p.coeffs.get(j);
+                newCoeffs.set(i + j, newCoeffs.get(i + j) + buffer);
             }
         }
         System.out.print("ld");
