@@ -38,7 +38,7 @@ public class Polynomial {
     public void setDegree(int degree) {
         this.degree = degree;
     }
-
+    //Сложение
     public Polynomial addition(Polynomial p) {
         Polynomial newPoly = new Polynomial();
         ListIterator<Double> thisCoefIterator = this.getCoeffs().listIterator(),
@@ -75,7 +75,7 @@ public class Polynomial {
         }
         return newPoly;
     }
-
+    //Вычитание
     public Polynomial substraction(Polynomial p) {
         Polynomial newPoly = new Polynomial();
         ListIterator<Double> thisCoefIterator = this.getCoeffs().listIterator(),
@@ -127,7 +127,6 @@ public class Polynomial {
                 newCoeffs.set(i + j, newCoeffs.get(i + j) + buffer);
             }
         }
-        System.out.print("ld");
         newPoly.setCoeffs(newCoeffs);
         return newPoly;
     }
