@@ -35,6 +35,7 @@ public class PolynomialInfo {
             } else {
                 throw new IOException("Ошибка в чтении из файла!");
             }
+            firstPolynomial.valuesTable(1.0, 10.0, 1.0);
             Polynomial multPoly = firstPolynomial.multiplication(secondPolynomial);
         } catch (FileNotFoundException e) {
             System.out.print("Проблема в работе с файлом!");

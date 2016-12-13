@@ -130,4 +130,18 @@ public class Polynomial {
         newPoly.setCoeffs(newCoeffs);
         return newPoly;
     }
+    //Таблица значений
+    public void valuesTable(Double from, Double to, Double step) {
+        Double value;
+        Double currentValue = from;
+        while (currentValue <= to) {
+            value = 0.0;
+            for (int i = 0; i < this.degree + 1; i++) {
+                value += this.coeffs.get(i) * Math.pow(currentValue, this.degree - i);
+            }
+            System.out.println("Аргумент: " + currentValue + " | Значение многочлена: " + value);
+            currentValue += step;
+        }
+        System.out.println("\n\n\n");
+    }
 }
