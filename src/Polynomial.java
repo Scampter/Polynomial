@@ -38,7 +38,7 @@ public class Polynomial {
     public void setDegree(int degree) {
         this.degree = degree;
     }
-
+    //Сложение
     public Polynomial addition(Polynomial p) {
         Polynomial newPoly = new Polynomial();
         ListIterator<Double> thisCoefIterator = this.getCoeffs().listIterator(),
@@ -75,7 +75,7 @@ public class Polynomial {
         }
         return newPoly;
     }
-
+    //Вычитание
     public Polynomial substraction(Polynomial p) {
         Polynomial newPoly = new Polynomial();
         ListIterator<Double> thisCoefIterator = this.getCoeffs().listIterator(),
@@ -115,27 +115,33 @@ public class Polynomial {
 
     public Polynomial multiplication(Polynomial p) {
         Polynomial newPoly = new Polynomial();
-        ListIterator<Double> thisCoefIterator = this.getCoeffs().listIterator(),
-                pCoefIterator = p.getCoeffs().listIterator();
-        ArrayList<Double> newCoeffs = new ArrayList<>(this.degree + p.degree + 1);
         newPoly.setDegree(this.degree + p.degree);
         Double buffer;
-        Double[] nC = new Double[this.degree + p.degree + 1];
-//        int i = -1, j = -0;
-//        while (thisCoefIterator.hasNext()) {
-//            i++;
-//            while (pCoefIterator.hasNext()) {
-//                j++;
-//                newCoeffs.add(i + j, thisCoefIterator.next() * pCoefIterator.next());
-//            }
-//        }
+        ArrayList<Double> newCoeffs = new ArrayList<>(this.degree + p.degree);
+        for (int i = this.degree + p.degree; i >= 0; i--) {
+            newCoeffs.add(0.0);
+        }
         for (int i = this.degree; i >= 0; i--) {
             for (int j = p.degree; j >= 0; j--) {
-                nC[i + j] += this.coeffs.get(i) * p.coeffs.get(j);
+                buffer = this.coeffs.get(i) * p.coeffs.get(j);
+                newCoeffs.set(i + j, newCoeffs.get(i + j) + buffer);
             }
         }
-        System.out.print("ld");
         newPoly.setCoeffs(newCoeffs);
         return newPoly;
+    }
+    //Таблица значений
+    public void valuesTable(Double from, Double to, Double step) {
+        Double value;
+        Double currentValue = from;
+        while (currentValue <= to) {
+            value = 0.0;
+            for (int i = 0; i < this.degree + 1; i++) {
+                value += this.coeffs.get(i) * Math.pow(currentValue, this.degree - i);
+            }
+            System.out.println("Аргумент: " + currentValue + " | Значение многочлена: " + value);
+            currentValue += step;
+        }
+        System.out.println("\n\n\n");
     }
 }
