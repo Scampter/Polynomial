@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class PolynomialInfo {
     public static void main(String[] args) {
@@ -58,6 +59,38 @@ public class PolynomialInfo {
                         System.out.println("Произведение = " + multPoly);
                         break;
                     case "4":
+                        Scanner in = new Scanner(System.in);
+                        double from, to, step;
+                        System.out.print("Введите начало интервала: ");
+                        while (true) {
+                            if (in.hasNextDouble()) {
+                                from = in.nextDouble();
+                                break;
+                            } else {
+                                System.out.println("Введите число!");
+                            }
+                        }
+                        System.out.print("Введите конец интервала: ");
+                        while (true) {
+                            if (in.hasNextDouble()) {
+                                to = in.nextDouble();
+                                break;
+                            } else {
+                                System.out.println("Введите число!");
+                            }
+                        }
+                        System.out.print("Введите шаг: ");
+                        while (true) {
+                            if (in.hasNextDouble()) {
+                                step = in.nextDouble();
+                                break;
+                            } else {
+                                System.out.println("Введите число!");
+                            }
+                        }
+                        firstPolynomial.valuesTable(from, to, step);
+                        secondPolynomial.valuesTable(from, to, step);
+                        break;
                     case "5": return;
                     default: System.out.println("Введите значение из списка!"); break;
                 }
