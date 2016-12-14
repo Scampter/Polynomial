@@ -142,6 +142,30 @@ public class Polynomial {
             System.out.println("Аргумент: " + currentValue + " | Значение многочлена: " + value);
             currentValue += step;
         }
-        System.out.println("\n\n\n");
+        System.out.println("\n\n");
+    }
+
+    @Override
+    public String toString() {
+        String polynomial = "";
+        for (int i = 0; i < this.degree + 1; i++) {
+            if (i == 0) {
+                polynomial += this.coeffs.get(i) + " * x^" + this.degree;
+            } else {
+                if (i == this.degree) {
+                    if (this.coeffs.get(i) >= 0) polynomial += " + " + this.coeffs.get(i);
+                    else {
+                        polynomial += " - " + -this.coeffs.get(i);
+                    }
+                } else {
+                    if (this.coeffs.get(i) > 0) {
+                        polynomial += " + " + this.coeffs.get(i) + " * x^" + (this.degree - i);
+                    } else {
+                        polynomial += " - " + -this.coeffs.get(i) + " * x^" + (this.degree - i);
+                    }
+                }
+            }
+        }
+        return polynomial;
     }
 }
